@@ -1,0 +1,119 @@
+﻿@model MyStore.Models.ViewModels.CheckoutVM
+
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    function enableAddressEdit() {
+        // Kích hoạt chỉnh sửa địa chỉ
+        document.getElementById("shippingAddress").removeAttribute("readonly");
+        document.getElementById("newAddressGroup").style.display = "block";
+    }
+
+    function updateShippingAddress() {
+        // Cập nhật địa chỉ mới vào địa chỉ giao hàng
+        var newAddress = document.getElementById("newShippingAddress").value;
+        if (newAddress) {
+            document.getElementById("shippingAddress").value = newAddress;
+            // Cập nhật giá trị ShippingAddress trong model
+            document.getElementById("ShippingAddressHidden").value = newAddress; // Cập nhật giá trị vào hidden field
+        }
+    }
+</script>
+<h2>ĐẶT HÀNG</h2>
+
+@using (Html.BeginForm("Checkout", "Order", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h3>Thông tin đơn hàng</h3>
+    <div class="form-group">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2">Sản phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartItems)
+                {
+                    <tr>
+                        <td><img src="@item.ProductImage" alt="@item.ProductName" style="max-height: 80px;" /></td>
+                        <td>@item.ProductName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.UnitPrice.ToString("N0")</td>
+                        <td>@item.TotalPrice.ToString("N0")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Thông tin giao hàng</h3>
+    <div class="form-group">
+        @Html.LabelFor(n => n.ShippingAddress, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(n => n.ShippingAddress, new
+            {
+                @class = "form-control",
+                @readonly = "readonly",
+                @id = "shippingAddress"
+            })
+            @Html.ValidationMessageFor(n => n.ShippingAddress)
+
+            <button type="button" class="btn btn-link" onclick="enableAddressEdit()">Chỉnh sửa</button>
+        </div>
+    </div>
+
+    <div class="form-group" id="newAddressGroup" style="display:none;">
+        @Html.Label("Địa chỉ mới", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" id="newShippingAddress" class="form-control" />
+        </div>
+    </div>
+
+    <!-- Thêm một hidden field để gửi địa chỉ mới -->
+    @Html.HiddenFor(n => n.ShippingAddress, new { @id = "ShippingAddressHidden" })
+
+    <h3>Phương thức giao hàng</h3>
+    <div class="form-group">
+        @Html.Label("Phương thức giao hàng", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.RadioButtonFor(n => n.DeliveryMethod, "Giao hàng nhanh") Giao hàng nhanh<br />
+            @Html.RadioButtonFor(n => n.DeliveryMethod, "Giao hàng tiết kiệm") Giao hàng tiết kiệm
+            @Html.ValidationMessageFor(n => n.DeliveryMethod)
+        </div>
+    </div>
+
+    <h3>Phương thức thanh toán</h3>
+    <div class="form-group">
+        @Html.Label("Phương thức thanh toán", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.RadioButtonFor(n => n.PaymentMethod, "Tiền mặt") Tiền mặt<br />
+            @Html.RadioButtonFor(n => n.PaymentMethod, "Paypal") Paypal<br />
+            @Html.RadioButtonFor(n => n.PaymentMethod, "Mua trước trả sau") Mua trước trả sau
+            @Html.ValidationMessageFor(n => n.PaymentMethod)
+        </div>
+    </div>
+
+    <h3>Thông tin thanh toán</h3>
+    <div class="form-group">
+        @Html.LabelFor(n => n.TotalAmount, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" class="form-control" value="@Model.TotalAmount.ToString("N0")" readonly />
+            @Html.ValidationMessageFor(n => n.TotalAmount)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Đặt hàng" class="btn btn-primary" onclick="updateShippingAddress()" />
+        </div>
+    </div>
+}
+

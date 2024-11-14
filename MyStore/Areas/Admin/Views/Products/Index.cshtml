@@ -1,0 +1,122 @@
+﻿@model MyStore.Models.ViewModels.SearchProductVM
+
+@{
+    ViewBag.Title = "Search Product";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<html>
+<head>
+    <meta name="viewport" content="width = device-width" />
+    <title>Search</title>
+    <style>
+        .search-container, .order-container {
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*            height: 150px;
+            max-width: 150px;*/
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("Index", "Products", FormMethod.Get))
+    {
+        <div class="form-group search-container">
+            @Html.TextBoxFor(m => m.SearchTerm, new
+       {
+           @class = "form-control",
+           PlaceHolder = "Nhập tên, mô tả hoặc chủng loại sản phẩm"
+       })
+            @Html.TextBoxFor(m => m.MinPrice, new
+       {
+           @class = "form=control",
+           PlaceHolder = "Nhập giá tối thiểu",
+           type = "number"
+       })
+            @Html.TextBoxFor(m => m.MaxPrice, new
+       {
+           @class = "form=control",
+           PlaceHolder = "Nhập giá tối đa",
+           type = "number"
+       })
+            <button type="submit" class="btn btn-primary">
+                Tìm kiếm
+            </button>
+
+        </div>
+        <div class=" form-group order-container">
+            Sắp xếp theo:
+            @Html.ActionLink("Tên tăng dần", "Index", "Products",
+        new
+        {
+        sortOrder = "name_asc",
+        searchTerm = Model.SearchTerm,
+        minPrice = Model.MinPrice,
+        maxPrice = Model.MaxPrice,
+        }, null)|
+            @Html.ActionLink("Tên giảm dần", "Index", "Products",
+        new
+        {
+        sortOrder = "name_desc",
+        searchTerm = Model.SearchTerm,
+        minPrice = Model.MinPrice,
+        maxPrice = Model.MaxPrice,
+        }, null)|
+            @Html.ActionLink("Giá tăng dần", "Index", "Products",
+        new
+        {
+        sortOrder = "price_asc",
+        searchTerm = Model.SearchTerm,
+        minPrice = Model.MinPrice,
+        maxPrice = Model.MaxPrice,
+        }, null)|
+            @Html.ActionLink("Giá giảm dần", "Index", "Products",
+        new
+        {
+        sortOrder = "price_desc",
+        searchTerm = Model.SearchTerm,
+        minPrice = Model.MinPrice,
+        maxPrice = Model.MaxPrice,
+        }, null)
+        </div>
+    }
+    @Html.Partial("PVListProduct", Model)
+    @*<h2 class="bg-success">DANH SÁCH SẢN PHẨM</h2>
+
+
+        <table class="table bg-info container-fluid">
+            <tr>
+                <th class="bg-light col-md-2">Hình ảnh</th>
+                <th class="bg-light col-md-2">Tên sản phẩm</th>
+                <th class="bg-light col-md-1">Đơn giá</th>
+                <th class="bg-light col-md-2">Danh mục</th>
+                <th class="bg-light col-md-4"></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="@Html.DisplayFor(modelItem => item.ProductImage)" /> </td>
+                    <td>  @Html.DisplayFor(modelItem => item.ProductName) </td>
+                    <td>  @Html.DisplayFor(modelItem => item.ProductPrice) </td>
+                    <td>  @Html.DisplayFor(modelItem => item.Category.CategoryName) </td>
+                    <td>
+
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.ProductID }, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.ProductID }, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.ProductID }, new { @class = "btn btn-primary btn-sm" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <div class="form-group">
+            <div class="col-md-offset-8 col-md-4">
+                @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-primary " })
+            </div>
+        </div>*@
+</body>
+
+</html>
+

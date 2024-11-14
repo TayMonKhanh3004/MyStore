@@ -1,0 +1,30 @@
+﻿@model MyStore.Models.ViewModels.HomeProductVM
+@{
+    ViewBag.Title = "Customer Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link rel="stylesheet" type="text/css" href="~/Content/myStyle/CustomerHome.css" />
+}
+@* Phần Banner*@
+<section class="container-fluid banner">
+    <div class="banner-container">
+        <h2>Chào mừng đến với trang Web E-commerce</h2>
+        <p>Mua sắm trực tuyến với hàng ngàn sản phẩm đa dạng và chất lượng</p>
+        <a href="#" class="btnBanner">Bắt đầu mua sắm</a>
+    </div>
+</section>
+@*Phần tìm kiếm sản phẩm*@
+<section class="container-fluid searchProd">
+</section>
+<section id="featureProd" class="content-section">
+    <h2>Tìm kiếm sản phẩm</h2> <!-- Đây là tiêu đề chính, sẽ được căn giữa -->
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        <div class="form-group search-container">
+            @Html.TextBoxFor(m => m.SearchTerm, new { @class = "search-input", placeholder = "Nhập tên, mô tả hoặc chủng loại sản phẩm" })
+            <button type="submit" class="search-button">Tìm kiếm</button>
+        </div>
+    }
+</section>
+<hr />
+
+

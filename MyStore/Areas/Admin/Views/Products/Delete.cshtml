@@ -1,0 +1,26 @@
+﻿
+@model MyStore.Models.Product
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="bg-success">XÓA SẢN PHẨM</h2>
+
+<h4 class="alert-danger">Bạn thực sự muốn xóa sản phẩm này không?</h4>
+
+@Html.Partial("PVProductInfo", Model)
+
+<div class="form-group">
+    <div class="col-md-offset-3 col-md-9">
+        <!-- Sử dụng form để gửi yêu cầu POST và thêm AntiForgeryToken -->
+        @using (Html.BeginForm("Delete", "Products", FormMethod.Post, new { area = "Admin" }))
+        {
+            @Html.AntiForgeryToken() <!-- Thêm token chống giả mạo -->
+            @Html.Hidden("id", Model.ProductID) <!-- Truyền ProductID dưới dạng hidden input -->
+            <input type="submit" value="Xóa" class="btn btn-danger" />
+        }
+        @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary" })
+    </div>
+</div>

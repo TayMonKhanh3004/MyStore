@@ -1,0 +1,46 @@
+﻿
+@model MyStore.Models.ViewModels.RegisterVM
+
+@{
+    ViewBag.Title = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông tin người dùng</h2>
+
+@using (Html.BeginForm("ProfileInfo", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.Username, "Tên đăng nhập")</strong>
+        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.Username)
+    </div>
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.CustomerName, "Họ tên")</strong>
+        @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CustomerName)
+    </div>
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.CustomerEmail, "Email")</strong>
+        @Html.TextBoxFor(m => m.CustomerEmail, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CustomerEmail)
+    </div>
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.CustomerPhone, "Số điện thoại")</strong>
+        @Html.TextBoxFor(m => m.CustomerPhone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CustomerPhone)
+    </div>
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.CustomerAddress, "Địa chỉ")</strong>
+        @Html.TextBoxFor(m => m.CustomerAddress, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CustomerAddress)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
+}

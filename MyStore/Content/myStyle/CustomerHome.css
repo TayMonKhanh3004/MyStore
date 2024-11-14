@@ -1,0 +1,204 @@
+﻿.banner {
+    background-image: url('../banner1.jpg');
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.banner-container {
+    text-align: center;
+    color: #000000;
+}
+
+    .banner-container h2 {
+        font-size: 2.5rem;
+    }
+
+    .banner-container p {
+        font-size: 2rem;
+    }
+
+.btnBanner {
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: darkorange;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+/*Style cho phần Search*/
+/* Đảm bảo phần tiêu đề được căn giữa */
+/* Tìm kiếm sản phẩm */
+#featureProd {
+    text-align: center; /* Căn giữa nội dung của phần này */
+    padding: 30px 0; /* Thêm khoảng cách trên và dưới */
+    width: 100%; /* Đảm bảo phần này chiếm toàn bộ chiều rộng */
+}
+
+    #featureProd h2 {
+        font-size: 2rem; /* Đặt cỡ chữ của tiêu đề */
+        color: #333; /* Màu chữ */
+        margin-bottom: 20px; /* Thêm khoảng cách dưới tiêu đề */
+    }
+
+.search-container {
+    display: flex; /* Sử dụng Flexbox để căn giữa các phần tử */
+    justify-content: center; /* Căn giữa các phần tử theo chiều ngang */
+    align-items: center; /* Căn giữa các phần tử theo chiều dọc */
+    gap: 10px; /* Khoảng cách giữa ô input và nút */
+    margin: 0 auto; /* Căn giữa container của ô nhập liệu */
+}
+
+.search-input {
+    width: 500px; /* Chiều rộng của ô nhập liệu */
+    padding: 10px;
+    border: 1px solid #808080;
+    border-radius: 5px 0 0 5px;
+}
+
+.search-button {
+    padding: 10px 20px;
+    background-color: brown;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+    .search-button:hover {
+        background-color: #555;
+    }
+
+
+/* Căn giữa toàn bộ phần "Tìm kiếm sản phẩm" */
+.searchProd {
+    text-align: center;
+    padding: 20px 0; /* Thêm khoảng cách trên và dưới */
+}
+
+
+
+/* Style feature products */
+.featureProd {
+    text-align: center;
+}
+
+.feature-container {
+    display: flex;
+    overflow-x: auto; /* Cho phép cuộn ngang nếu danh sách sản phẩm quá dài */
+    gap: 10px;
+    padding: 10px;
+    justify-content: center;
+}
+
+.fproduct-item {
+    width: 150px; /* Giảm chiều rộng của từng sản phẩm để có thể hiển thị nhiều sản phẩm trên một hàng */
+    margin: 5px;
+    flex: 0 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Căn giữa nội dung theo chiều ngang */
+    justify-content: space-between;
+}
+
+    .fproduct-item img {
+        width: 100%;
+        height: auto;
+        max-height: 100px; /* Giảm chiều cao tối đa của hình ảnh để hình ảnh nhỏ hơn */
+        object-fit: contain; /* Đảm bảo hình ảnh giữ nguyên tỷ lệ */
+        margin-bottom: 10px;
+    }
+
+.prodPrice {
+    font-size: 1em;
+    color: #3336ff;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.prodName {
+    color: #333;
+    font-weight: bold;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.prodSale {
+    font-size: 0.8em;
+    color: #777;
+}
+
+
+/*Style của list products*/
+.listProduct {
+    text-align: left;
+}
+
+.list-container {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.lproduct-item {
+    max-height: 500px;
+}
+
+    .lproduct-item img {
+        max-height: 120px;
+    }
+
+.detailproduct-item {
+    width: 150px;
+    max-height: 400px;
+    margin: 10px;
+    gap: 5px;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+}
+
+    .detailproduct-item img {
+        max-height: 100px;
+    }
+/*Thuộc tính chung của feature và new product*/
+.fproduct-item, .lproduct-item, .detailproduct-item {
+    border: 1px groove #808080;
+    border-radius: 10px;
+}
+
+.featureProd h2, .listProduct h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: brown;
+    text-align: center;
+}
+
+.prodPrice {
+    font-size: large;
+    color: blue;
+    font-weight: bolder;
+    padding: 10px 5px 0px 5px;
+}
+
+.prodName {
+    color: black;
+    padding: 0px 5px 0px 5px;
+}
+
+.prodSale {
+    font-size: small;
+    color: dimgrey;
+    padding: 0px 5px 0px 5px;
+}

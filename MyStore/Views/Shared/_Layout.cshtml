@@ -1,0 +1,139 @@
+﻿﻿
+<style type="text/css">
+    html {
+        font-size: 14px;
+        font-family: 'Franklin Gothic', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+
+    body {
+        background-color: white;
+    }
+
+    #container {
+        border-radius: 10px;
+    }
+
+    header {
+        background-color: darkgray;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo img {
+        height: 100px;
+    }
+
+    nav ul {
+        list-style-type: none;
+        display: flex;
+    }
+
+        nav ul li {
+            margin-left: 20px;
+            font-size: 1.2rem;
+            position: relative; /* Thêm position relative */
+        }
+
+            nav ul li a {
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
+            }
+
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 100%; /* Đặt menu con ngay bên dưới mục "Tài khoản" */
+        left: 0;
+        background-color: white;
+        border: 1px solid #000000;
+        padding: 5px 0;
+        min-width: 150px;
+    }
+
+    nav ul li:hover .submenu {
+        display: block;
+    }
+
+    .submenu a {
+        display: block;
+        padding: 10px 15px;
+        color: #000000;
+        text-decoration: none;
+    }
+
+        .submenu a:hover {
+            background-color: #f2d9d9;
+        }
+</style>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <div class="logo">
+                <img src="https://attentionlazada.wordpress.com/wp-content/uploads/2017/12/lazada-logo-official_b.png" alt="logo" />
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="~/Home/Index">
+                            <i class="fas fa-home"></i> Trang chủ
+                        </a>
+                    </li>
+                    @if (Session["Username"] != null)
+                    {
+                        <li class="user-menu">
+                            <a href="#"><i class="far fa-user-circle"></i> @Session["Username"]</a>
+                            <!-- Menu con khi di chuột vào tên người dùng -->
+                            <div class="submenu">
+                                <a href="~/Account/ProfileInfo">Đổi thông tin</a>
+                                <a href="~/Account/ChangePassword">Đổi mật khẩu</a>
+                                <a href="~/Account/Logout">Đăng xuất</a>
+                            </div>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="~/Account/Login"><i class="fas fa-sign-in-alt"></i> Tài khoản</a></li>
+                    }
+
+                    <li>
+                        <a href="~/Cart/Index">
+                            <i class="fas fa-shopping-cart"></i> Giỏ hàng
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+
+    </div>
+    <div class="container body-content" style="min-height: 500px; margin-top: 50px;">
+        @RenderBody()
+    </div>
+    <div class="navbar">
+        <footer class="container modal-footer " style="background-color: lightgray;">
+            <div class="navbar-text">
+                &copy; @DateTime.Now.Year - Tên ứng dụng
+            </div>
+            <h4>Contact</h4>
+            <p>Tên các thành viên trong nhóm</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

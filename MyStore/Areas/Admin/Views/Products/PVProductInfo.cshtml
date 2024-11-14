@@ -1,0 +1,89 @@
+﻿@model MyStore.Models.Product
+<head>
+    <style>
+        img {
+            height: 250px;
+            max-width: 250px;
+        }
+
+        .container-fluid {
+            padding: 20px;
+        }
+
+        /* Căn chỉnh tổng thể */
+        .dl-horizontal {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+
+        /* Định dạng cho cột ảnh */
+        .col-md-3 img {
+            height: 250px;
+            max-width: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Căn chỉnh các thông tin sản phẩm theo hàng */
+        .col-md-9 dl {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Định dạng dt và dd cho các cột nội dung */
+        dt {
+            font-weight: bold;
+            float: left;
+            width: 30%; /* Độ rộng của tiêu đề */
+            margin: 0;
+        }
+
+        dd {
+            float: left;
+            width: 70%; /* Độ rộng của nội dung */
+            margin: 0 0 10px;
+            padding-left: 10px; /* Khoảng cách giữa tiêu đề và nội dung */
+        }
+
+            /* Đảm bảo việc reset float sau mỗi dòng */
+            dt::after, dd::after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+        /* Định dạng tổng thể */
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+
+</head>
+<div class="container-fluid">
+    <div class="dl-horizontal">
+        <div class="col-md-3">
+            <img src="@Html.DisplayFor(model => model.ProductImage)" />
+        </div>
+        <div class="col-md-9">
+            <dl>
+                <dt> Tên sản phẩm </dt>
+                <dd> @Html.DisplayFor(model => model.ProductName) </dd>
+
+                <dt> Mô tả  </dt>
+                <dd>  @Html.DisplayFor(model => model.ProductDescription) </dd>
+
+                <dt>  Đơn giá </dt>
+                <dd> @Html.DisplayFor(model => model.ProductPrice) </dd>
+
+                <dt>  Hình ảnh </dt>
+                <dd>  @Html.DisplayFor(model => model.ProductImage) </dd>
+
+                <dt> Danh mục  </dt>
+                <dd>  @Html.DisplayFor(model => model.Category.CategoryName)</dd>
+            </dl>
+        </div>
+
+    </div>
+</div>
+

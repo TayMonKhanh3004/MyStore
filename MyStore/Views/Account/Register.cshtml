@@ -1,0 +1,60 @@
+﻿@model MyStore.Models.ViewModels.RegisterVM
+
+@{
+    ViewBag.Title = "Đăng ký tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đăng ký tài khoản</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.Username, "Tên đăng nhập")</strong>
+        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Username)
+    </div>
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.Password, "Mật khẩu")</strong>
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.ConfirmPassword, "Xác nhận mật khẩu")</strong>
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+    </div>
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.CustomerName, "Họ tên")</strong>
+        @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CustomerName)
+    </div>
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.CustomerPhone, "Số điện thoại")</strong>
+        @Html.TextBoxFor(m => m.CustomerPhone, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CustomerPhone)
+    </div>
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.CustomerEmail, "Email")</strong>
+        @Html.TextBoxFor(m => m.CustomerEmail, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CustomerEmail)
+    </div>
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.CustomerAddress, "Địa chỉ")</strong>
+        @Html.TextBoxFor(m => m.CustomerAddress, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CustomerAddress)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Đăng ký</button>
+}
+
+<p>Bạn đã có tài khoản? <a href="@Url.Action("Login", "Account")">Đăng nhập</a></p>
+

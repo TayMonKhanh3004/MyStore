@@ -1,0 +1,29 @@
+﻿@model MyStore.Models.ViewModels.LoginVM
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Đăng nhập</h2>
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.Username, "Tên đăng nhập")</strong>
+        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Username)
+    </div>
+
+    <div class="form-group">
+        <strong>@Html.LabelFor(m => m.Password, "Mật khẩu")</strong>
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Đăng nhập</button>
+}
+
+<p>Bạn chưa có tài khoản? <a href="@Url.Action("Register", "Account")">Đăng ký</a></p>
